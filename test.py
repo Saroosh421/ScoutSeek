@@ -1,34 +1,3 @@
-'''
-import torch
-from PIL import Image
-
-# Load the YOLOv5 model
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-
-def detect_object(image_path, object_name):
-    # Load an image with PIL
-    img = Image.open(image_path)
-
-    # Convert the PIL image to a format suitable for the model
-    results = model(img)
-
-    # Extract detected objects names
-    detected_objects = results.pandas().xyxy[0]['name'].tolist()
-    return object_name in detected_objects
-
-if __name__ == "__main__":
-    image_path = "images/1.jpg"
-    object_name = input("What do you want to find in this space? ")
-
-    # Check if the object is in the image
-    exists = detect_object(image_path, object_name)
-    if exists:
-        print(f"{object_name} exists in the space.")
-    else:
-        print(f"{object_name} does not exist in the space.")
-
-    '''
-
 import torch
 from PIL import Image
 import os
